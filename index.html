@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Ícone da aba -->
+    <link rel="shortcut icon" href="images/unknown.png" type="image/x-icon">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/Index.css">
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js" defer></script>
+    <script src="js/Index.js" defer></script>
+    <script src="js/QuizPage.js" defer></script>
+    <script src="js/CreateQuiz.js" defer></script>
+
+    <title>Buzz Quizz</title>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header>
+        <h1>BuzzQuizz</h1>
+    </header>
+
+    <!-- PÁGINA INICIAL DO QUIZ -->
+    <section id="Select-quiz" class="">
+
+        <!-- AREA DE QUIZ DO USUÁRIO (QUANDO VAZIA) -->
+        <div id="User_quiz_empty" class="">
+            <h4>Você não criou nenhum quizz ainda :(</h4>
+            <button data-identifier="create-quizz" class="Create_quiz_btn" onclick="createQuiz()">Criar Quizz</button>
+        </div>
+
+        <!-- AREA DE QUIZ DO USUÁRIO (QUANDO PREENCHIDA) -->
+        <div id="User_quiz" class="Hide">
+            <div class="user_quiz_title">
+                <h4>Seus Quizzes</h4>
+                <button data-identifier="create-quizz" onclick="createQuiz()"><img src="images/Add-iconsvg.svg" alt=""></button>
+            </div>
+            
+            <div data-identifier="user-quizzes" class="user_quiz_container">
+            </div>
+        </div>
+
+        <!-- QUIZZES -->
+        <div class="quiz_title">
+            <h3 id="Quizzes_title">Todos os Quizzes</h3>
+        </div>
+        
+        <div data-identifier="general-quizzes" class="Quiz_container"></div>
+
+    </section>
+
+    <!-- PÁGINA DE UM QUIZ -->
+    <section class="Quiz_page Hide"></section>
+
+    <!-- PÁGINA DE CRIAÇÃO DE QUIZ -->
+    <section class="Create_quiz Hide">
+
+        <!-- PRIMEIRA SEÇÃO DE PERGUNTAS -->
+        <div class="First Section">
+
+            <!-- TÍTULO DA SEÇÃO -->
+            <h3>Comece pelo começo</h3>
+
+            <!-- FORMULÁRIO DE RESPOSTA -->
+            <form>
+                <input type="text" placeholder="Título do seu quizz (entre 20 e 65 caracteres)" data-firstSection='1'>
+                <div class="Wrong" data-firstWrong="1"></div>
+
+                <input type="text" placeholder="URL da imagem do seu quizz" data-firstSection='2'>
+                <div class="Wrong" data-firstWrong="2"></div>
+
+                <input type="text" placeholder="Quantidade de perguntas do quizz (pelo menos 3)" data-firstSection='3'>
+                <div class="Wrong" data-firstWrong="3"></div>
+                
+                <input type="text" placeholder="Quantidade de níveis do quizz (pelo menos 2)" data-firstSection='4'>
+                <div class="Wrong" data-firstWrong="4"></div>
+            </form>
+
+            <button class="Next_section_btn" onclick="nextSection(this.parentNode)">Prosseguir pra criar
+                perguntas</button>
+        </div>
+
+        <!-- SEGUNDA SEÇÃO DE PERGUNTAS -->
+        <div class="Second Section Hide">
+
+            <!-- TÍTULO DA SEÇÃO -->
+            <h3>Crie suas perguntas</h3>
+
+            <!-- FORMULÁRIO DE RESPOSTA -->
+            <div class="Form_question"></div>
+
+            <button class="Next_section_btn" onclick="validSecondSection(this.parentNode)">
+                Prosseguir pra criar perguntas
+            </button>
+        </div>
+
+        <!-- TERCEIRA SEÇÃO DE PERGUNTAS -->
+        <div class="Third Section Hide">
+
+            <!-- TÍTULO DA SEÇÃO -->
+            <h3>Agora, decida os níveis</h3>
+
+            <!-- FORMULÁRIO DE RESPOSTA -->
+            <div class="Third_Form_Question"></div>
+
+            <button class="Next_section_btn" onclick="validThirdSection(this.parentNode)">Finalizar Quizz</button>
+        </div>
+
+        <!-- PÁGINA FINAL DA SEÇÃO DE PERGUNTAS -->
+        <div class="Last Section Hide">
+
+            <!-- TÍTULO DA SEÇÃO -->
+            <h3>Seu quizz está pronto!</h3>
+
+            <!-- PRÉ-VIZUALIZAÇÃO DO QUIZ -->
+            <div class="Show_quiz"></div>
+
+            <div class="Buttons" id="Create_Page__Buttons"> </div>
+        </div>
+    </section>
+</body>
+
+</html>
